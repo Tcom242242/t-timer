@@ -5,24 +5,37 @@ function sample() {
     var text = 'Hello World';
     console.log( text );
 }
-function countUpStart()
+
+var timer = null;
+
+function stopTimer(){
+  clearInterval(timer);
+}
+
+function countUpStartOrStop()
 {
-  setInterval(countUp, 100);
 
-function countUp(){
-  // console.log("countUp");
-  var min = document.getElementById("min").value;
-  var sec = document.getElementById("sec").value;
-  if (min=="") min=0;
-  min = parseInt(min)
+  if (!timer){  //timerがnullじゃなければ、スタート
+    timer = setInterval(countUp, 100);
+    function countUp(){
+      // console.log("countUp");
+      var min = document.getElementById("min").value;
+      var sec = document.getElementById("sec").value;
+      if (min=="") min=0;
+      min = parseInt(min)
 
-  if (sec=="") sec=0;
-  sec= parseInt(sec)
+      if (sec=="") sec=0;
+      sec= parseInt(sec)
 
-  tmWrite(min*60+sec+1);
+      tmWrite(min*60+sec+1);
+    }
+  }else{  //timerがnullだったらストップ
+    console.log("else");
+    clearInterval(timer);
+    timer = null;
+  }
 }
 
-}
 function tmWrite(int)
 {
   // console.log("tmWrite");
