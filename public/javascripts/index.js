@@ -14,11 +14,11 @@ function stopTimer(){
 
 function countUpStartOrStop()
 {
-
   if (!timer){  //timerがnullじゃなければ、スタート
     timer = setInterval(countUp, 100);
     function countUp(){
       // console.log("countUp");
+      document.getElementById("timerBtn").value = "stop";
       var min = document.getElementById("min").value;
       var sec = document.getElementById("sec").value;
       if (min=="") min=0;
@@ -28,11 +28,13 @@ function countUpStartOrStop()
       sec= parseInt(sec)
 
       tmWrite(min*60+sec+1);
+
     }
   }else{  //timerがnullだったらストップ
     console.log("else");
     clearInterval(timer);
     timer = null;
+    document.getElementById("timerBtn").value = "start";
   }
 }
 
