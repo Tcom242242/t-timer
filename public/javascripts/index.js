@@ -1,14 +1,12 @@
-//参考
-//http://www.pori2.net/js/timer/6.html
-
-function sample() {
-    var text = 'Hello World';
-    console.log( text );
-}
-
 var timer = null;
 
+function reset(){
+  var min = document.getElementById("min").value = "0";
+  var sec = document.getElementById("sec").value = "0";
+}
+
 function stopTimer(){
+  document.getElementById("timerBtn").value = "stop";
   clearInterval(timer);
 }
 
@@ -28,36 +26,18 @@ function countUpStartOrStop()
       sec= parseInt(sec)
 
       tmWrite(min*60+sec+1);
-
     }
   }else{  //timerがnullだったらストップ
-    console.log("else");
     clearInterval(timer);
     timer = null;
     document.getElementById("timerBtn").value = "start";
   }
 }
 
-function tmWrite(int)
+function tmWrite(time)
 {
   // console.log("tmWrite");
-  int = parseInt(int);
-  document.getElementById("min").value=Math.floor(int/60);
-  document.getElementById("sec").value=Math.floor(int%60);
-}
-
-function changeTime() {
-  var time = getTime();
-  var timeTextArea = document.getElementById("time");
-  timeTextArea.innerHTML=time;
-}
-
-function getTime(){
-  var date = new Date();
-  var month = date.getMonth()+1;
-  var d = date.getDate();
-  var hours = date.getHours();
-  var minutes = date.getMinutes();
-  var seconds = date.getSeconds();
-  return String(month) + "月"+String(d)+"日"+String(hours)+":"+String(minutes)+":"+String(seconds);
+  time = parseInt(time);
+  document.getElementById("min").value=Math.floor(time/60);
+  document.getElementById("sec").value=Math.floor(time%60);
 }
